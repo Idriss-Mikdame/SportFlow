@@ -29,6 +29,11 @@ public class ConnectionDB {
                        + "foreign key (id_Membre) references membres(id),"
                        + "foreign key (id_Seance) references entraineurs(id),";
         stm.executeUpdate(seanceTable);
+        String userrTable = "CREATE TABLE IF NOT EXIST users ( id INT(12) primary key AUTO_ICREAMANT,"
+                + "username VARCHAR(50),"
+                + "password VARCHAR(50),"
+                + "role VARCHAR(50),";
+        stm.executeUpdate(userrTable);
         return connection;
     }
 }
