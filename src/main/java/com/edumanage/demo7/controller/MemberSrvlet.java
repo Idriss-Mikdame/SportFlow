@@ -110,10 +110,6 @@ public class MemberSrvlet extends HttpServlet {
         Date naissance = Date.valueOf(request.getParameter("naissance"));
         String sportpratique = request.getParameter("sportpratique");
         Membre membre = new Membre(nom, naissance, sportpratique);
-        System.out.println(nom);
-        System.out.println(naissance);
-        System.out.println(sportpratique);
-        System.out.println(membre.getNaissance());
         memberDAO.ajouterMembre(membre);
         response.sendRedirect("membres?action=afficher");
 

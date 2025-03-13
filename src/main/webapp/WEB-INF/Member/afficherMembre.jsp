@@ -1,34 +1,40 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: idriss
-  Date: 11/03/2025
-  Time: 11:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.edumanage.demo7.model.Membre" %>
+
+<%
+    List<Membre> membreList = (List<Membre>) request.getAttribute("membreList");
+%>
+
+<html>
+<head>
+    <title>Liste des Membres</title>
+</head>
 <body>
 <h2>Liste des Membres</h2>
+<a href="membres?action=new">Ajouter un Nouveau Membre</a>
+<br><br>
 <table border="1">
     <tr>
         <th>ID</th>
         <th>Nom</th>
-        <th>Date de naissance</th>
-        <th>Sport</th>
+        <th>Date de Naissance</th>
+        <th>Sport Pratiqué</th>
         <th>Actions</th>
     </tr>
-    <c:forEach var="membre" items="${membreList}">
-        <tr>
-            <td>${membre.id}</td>
-            <td>${membre.nom}</td>
-            <td>${membre.naissance}</td>
-            <td>${membre.sportpratique}</td>
-            <td>
-                <a href="membres?action=afficherbyID&id=${membre.id}">Modifier</a>
-                <a href="membres?action=supprimer&id=${membre.id}" onclick="return confirm('Êtes-vous sûr ?')">Supprimer</a>
-            </td>
-        </tr>
-    </c:forEach>
+    <% for (Membre membre : membreList) { %>
+    <tr>
+        <td><%= membre.getId() %></td>
+        <td><%= membre.getNom() %></td>
+        <td><%= membre.getNaissance() %></td>
+        <td><%= membre.getSportPratique() %></td>
+        <td>
+            <a href="membres?action=afficherbyID&id=<%= membre.getId() %>">Modifier</a>
+            |
+            <a href="membres?action=supprimer&id=<%= membre.getId() %>" onclick="return confirm('Voulez-vous vraiment supprimer ce membre ?');">Supprimer</a>
+        </td>
+    </tr>
+    <% } %>
 </table>
-<br>
-<a href="membres?action=new">Ajouter un Membre</a>
 </body>
+</html>

@@ -1,22 +1,23 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: idriss
-  Date: 11/03/2025
-  Time: 11:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html>
+<head>
+    <title>Ajouter un Membre</title>
+</head>
 <body>
 <h2>Ajouter un Membre</h2>
 <form action="membres?action=ajouter" method="post">
-    Nom: <input type="text" name="nom" required><br>
-    Date de naissance: <input type="date" name="naissance" required><br>
-    Sport pratiqué: <input type="text" name="sportpratique" required><br>
+    <label>Nom :</label>
+    <input type="text" name="nom" required><br>
+
+    <label>Date de naissance (yyyy-MM-dd) :</label>
+    <input type="date" name="naissance" required><br>
+
+    <label>Sport Pratiqué :</label>
+    <input type="text" name="sportpratique" required><br>
+
     <input type="submit" value="Ajouter">
 </form>
+<br>
+<a href="membres?action=afficher">Retour à la liste des membres</a>
 </body>
-
-
 </html>
