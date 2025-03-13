@@ -6,9 +6,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class UserDAO {
-    private Connection connection;
-    public UserDAO() throws SQLException , ClassNotFoundException {
-        connection = ConnectionDB.getConnection();
-    }
+//    private Connection connection;
+//    public UserDAO() throws SQLException , ClassNotFoundException {
+//        connection = ConnectionDB.getConnection();
+//    }
 
 }

@@ -7,33 +7,46 @@ import java.sql.Statement;
 
 public class ConnectionDB {
 
-    public static  Connection getConnection() throws SQLException, ClassNotFoundException {
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sportflow", "root", "");
 
         Statement stm = connection.createStatement();
-        String MemberTable = "CREATE TABLE IF NOT EXISTS members ( id INT(12) primary key AUTO_ICREAMANT," +
-                "nom VARCHAR(50)," +
-                "naissance DATE," +
-                "sportpratique VARCHAR(50)";
+
+        // Table Members
+        String MemberTable = "CREATE TABLE IF NOT EXISTS members ("
+                + "id INT(12) PRIMARY KEY AUTO_INCREMENT, "
+                + "nom VARCHAR(50), "
+                + "naissance DATE, "
+                + "sportpratique VARCHAR(50))";
         stm.executeUpdate(MemberTable);
-        String Entraineurtable = "CREATE TABLE IF NOT EXISTS entraineurs ( id INT(10) primary key AUTO_ICREAMANT,"
-                + "nom VARCHAR(50),"
-                + "specialite DATE,";
+
+        // Table Entraineurs
+        String Entraineurtable = "CREATE TABLE IF NOT EXISTS entraineurs ("
+                + "id INT(10) PRIMARY KEY AUTO_INCREMENT, "
+                + "nom VARCHAR(50), "
+                + "specialite VARCHAR(50))";
         stm.executeUpdate(Entraineurtable);
-        String seanceTable = "CREATE TABALE IF NOT EXISTS seance ( id INT(12) primary key AUTO_ICREAMANT, "
-                       + "id_Membre  INT(10),"
-                       + "id_Entraineur  INT(10),"
-                       + "dateHeure DATETIME,"
-                       + "foreign key (id_Membre) references membres(id),"
-                       + "foreign key (id_Seance) references entraineurs(id),";
+
+        // Table Séance
+        String seanceTable = "CREATE TABLE IF NOT EXISTS seance ("
+                + "id INT(12) PRIMARY KEY AUTO_INCREMENT, "
+                + "id_Membre INT(10), "
+                + "id_Entraineur INT(10), "
+                + "dateHeure DATETIME, "
+                + "FOREIGN KEY (id_Membre) REFERENCES members(id), "
+                + "FOREIGN KEY (id_Entraineur) REFERENCES entraineurs(id))";
         stm.executeUpdate(seanceTable);
-        String userrTable = "CREATE TABLE IF NOT EXIST users ( id INT(12) primary key AUTO_ICREAMANT,"
-                + "username VARCHAR(50),"
-                + "password VARCHAR(50),"
-                + "role VARCHAR(50),";
+
+        // Table Users
+        String userrTable = "CREATE TABLE IF NOT EXISTS users ("
+                + "id INT(12) PRIMARY KEY AUTO_INCREMENT, "
+                + "username VARCHAR(50), "
+                + "password VARCHAR(50), "
+                + "role VARCHAR(50))";
         stm.executeUpdate(userrTable);
+
         return connection;
     }
 }

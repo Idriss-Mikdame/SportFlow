@@ -9,16 +9,14 @@
 <!DOCTYPE html>
 <html>
 <body>
-<form action="/membres" method="post">
-
-    <label >Nom : </label><br>
-    <input type="text"  name="nom"><br>
-    <label >Date naissance : </label><br>
-    <input type="date"  name="date" ><br>
-    <label>Sport pratique :</label><br>
-    <input type="text" name="sport"><br><br>
-    <input type="submit" value="Submit">
-
+<h2>Ajouter un Membre</h2>
+<form action="membres?action=ajouter" method="post">
+    Nom: <input type="text" name="nom" required><br>
+    Date de naissance: <input type="date" name="naissance" required><br>
+    Sport pratiqué: <input type="text" name="sportpratique" required><br>
+    <input type="submit" value="Ajouter">
 </form>
 </body>
+
+
 </html>

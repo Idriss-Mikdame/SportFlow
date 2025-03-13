@@ -9,18 +9,21 @@ import java.util.List;
 
 public class EntraineurDAO {
     private Connection connection;
-    public EntraineurDAO() throws ClassNotFoundException, SQLException {
+    public EntraineurDAO() throws SQLException, ClassNotFoundException {
         connection = ConnectionDB.getConnection();
     }
-    public void ajouterEntraineur(Entraineur entraineur) throws SQLException {
-        String query = "INSER INTO entraineurs(id,nom,specialite) VALUES (?,?,?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setInt(1, entraineur.getId());
-        preparedStatement.setString(2, entraineur.getNom());
-        preparedStatement.setString(3, entraineur.getSpecialite());
-        preparedStatement.executeUpdate();
+    public void ajouterEntraineur(Entraineur entraineur) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO entraineurs (nom, specialite) VALUES (?, ?)";
+        try (Connection connection = ConnectionDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
+            preparedStatement.setString(1, entraineur.getNom());
+            preparedStatement.setString(2, entraineur.getSpecialite());
+            preparedStatement.executeUpdate();
+        }
     }
+
+
     public void modifierEntraineur(Entraineur entraineur) throws SQLException {
         String query = "UPDATE entraineurs SET nom=?,specialite=? WHERE id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
