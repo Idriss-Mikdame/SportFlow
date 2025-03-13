@@ -32,6 +32,10 @@ public class Membre {
     }
 
     public Membre(int id, String nom, Date naissance, String sportpratique) {
+    this.id = id;
+    this.nom = nom;
+    this.naissance = new Timestamp(naissance.getTime());
+    this.SportPratique = sportpratique;
 
 
     }

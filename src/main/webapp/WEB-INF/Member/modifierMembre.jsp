@@ -17,8 +17,9 @@
     <label>Nom :</label>
     <input type="text" name="nom" value="<%= membre.getNom() %>" required><br>
 
-    <label>Date de naissance (yyyy-MM-dd) :</label>
-    <input type="date" name="naissance" value="<%= membre.getNaissance() %>" required><br>
+    <label>Date de naissance (yyyy-MM-dd HH:mm:ss) :</label>
+    <input type="datetime-local" name="naissance"
+           value="<%= membre.getNaissance().toString().replace(' ', 'T') %>" required><br>
 
     <label>Sport Pratiqué :</label>
     <input type="text" name="sportpratique" value="<%= membre.getSportPratique() %>" required><br>

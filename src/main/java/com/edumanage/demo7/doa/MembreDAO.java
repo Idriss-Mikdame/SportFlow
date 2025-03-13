@@ -41,6 +41,7 @@ public class MembreDAO {
     ResultSet resultSet = preparedStatement.executeQuery();
     while (resultSet.next()) {
         Membre membre = new Membre(
+                resultSet.getInt("id"),
                 resultSet.getString("nom"),
                 resultSet.getDate("naissance"),
                 resultSet.getString("sportpratique"));
