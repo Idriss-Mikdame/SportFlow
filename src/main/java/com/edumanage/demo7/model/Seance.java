@@ -8,4 +8,53 @@ public class Seance {
     private int id_Entraineur;
     private Date datehour;
 
+    public Seance(int id, int id_Membre, int id_Entraineur, Date datehour) {
+        this.id = id;
+        this.id_Membre = id_Membre;
+        this.id_Entraineur = id_Entraineur;
+        this.datehour = datehour;
+    }
+
+    public Seance(int id_Membre, int id_Entraineur, Date datehour) {
+        this.id_Membre = id_Membre;
+        this.id_Entraineur = id_Entraineur;
+        this.datehour = datehour;
+    }
+
+    public Seance(int id_Membre, int id_Entraineur) {
+        this.id_Membre = id_Membre;
+        this.id_Entraineur = id_Entraineur;
+    }
+
+    public int getId_Membre() {
+        return id_Membre;
+    }
+
+    public void setId_Membre(int id_Membre) {
+        this.id_Membre = id_Membre;
+    }
+
+    public int getId_Entraineur() {
+        return id_Entraineur;
+    }
+
+    public void setId_Entraineur(int id_Entraineur) {
+        this.id_Entraineur = id_Entraineur;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getDatehour() {
+        return datehour;
+    }
+
+    public void setDatehour(Date datehour) {
+        this.datehour = datehour;
+    }
 }

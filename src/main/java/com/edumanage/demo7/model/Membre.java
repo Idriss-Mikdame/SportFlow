@@ -9,32 +9,27 @@ public class Membre {
     private int id;
     private String nom;
     private String SportPratique;
-    private Timestamp naissance;
+    private Date naissance;
 
-    public Membre(int id, String nom, String sportPratique, Timestamp naissance) {
+    public Membre(int id, String nom, String sportPratique, Date naissance) {
         this.id = id;
         this.nom = nom;
         SportPratique = sportPratique;
         this.naissance = naissance;
     }
 
-    public Membre(String nom, String sportPratique, Timestamp naissance) {
+    public Membre(String nom,  Date naissance,String sportPratique) {
         this.nom = nom;
         this.SportPratique = sportPratique;
         this.naissance = naissance;
     }
 
-    public Membre(String nom, Date naissance, String sportpratique) {
-        this.nom = nom;
-        this.SportPratique = sportpratique;
-        this.naissance = new Timestamp(naissance.getTime());
 
-    }
 
     public Membre(int id, String nom, Date naissance, String sportpratique) {
     this.id = id;
     this.nom = nom;
-    this.naissance = new Timestamp(naissance.getTime());
+    this.naissance = naissance;
     this.SportPratique = sportpratique;
 
 
@@ -44,11 +39,7 @@ public class Membre {
     public Membre(int id, String nom, Timestamp naissance, String sportpratique) {
     }
 
-    public Membre(String nom, Timestamp naissance, String sportpratique) {
-    this.nom = nom;
-    this.naissance = new Timestamp(naissance.getTime());
-    this.SportPratique = sportpratique;
-    }
+
 
     public int getId() {
         return id;
@@ -74,11 +65,11 @@ public class Membre {
         SportPratique = sportPratique;
     }
 
-    public Timestamp getNaissance() {
+    public Date getNaissance() {
         return naissance;
     }
 
-    public void setNaissance(Timestamp naissance) {
+    public void setNaissance(Date naissance) {
         this.naissance = naissance;
     }
 }

@@ -18,7 +18,7 @@ public class MembreDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, membre.getNom());
-            preparedStatement.setTimestamp(2, membre.getNaissance());
+            preparedStatement.setDate(2, membre.getNaissance());
             preparedStatement.setString(3,membre.getSportPratique());
             preparedStatement.executeUpdate();
         } catch (ClassNotFoundException e) {
@@ -29,7 +29,7 @@ public class MembreDAO {
         String query = "UPDATE members SET nom=?,naissance=?,sportpratique=? WHERE id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1,membre.getNom());
-        preparedStatement.setTimestamp(2, membre.getNaissance());
+        preparedStatement.setDate(2, membre.getNaissance());
         preparedStatement.setString(3,membre.getSportPratique());
         preparedStatement.setInt(4,membre.getId());
         preparedStatement.executeUpdate();

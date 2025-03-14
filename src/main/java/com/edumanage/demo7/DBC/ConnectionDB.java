@@ -34,7 +34,7 @@ public class ConnectionDB {
                 + "id INT(12) PRIMARY KEY AUTO_INCREMENT, "
                 + "id_Membre INT(10), "
                 + "id_Entraineur INT(10), "
-                + "dateHeure DATETIME, "
+                + "DATETIME DEFAULT CURRENT_TIMESTAMP , "
                 + "FOREIGN KEY (id_Membre) REFERENCES members(id), "
                 + "FOREIGN KEY (id_Entraineur) REFERENCES entraineurs(id))";
         stm.executeUpdate(seanceTable);

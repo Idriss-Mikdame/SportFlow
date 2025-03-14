@@ -97,8 +97,7 @@ public class MemberSrvlet extends HttpServlet {
     private void modifieMember(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String nom = request.getParameter("nom");
-        Timestamp naissance = Timestamp.valueOf(request.getParameter("naissance"));
-        String sportpratique = request.getParameter("sportpratique");
+        Date naissance = Date.valueOf(request.getParameter("naissance"));        String sportpratique = request.getParameter("sportpratique");
         Membre membre = new Membre(id, nom, naissance, sportpratique);
         memberDAO.modifierMembre(membre);
         response.sendRedirect("membres?action=afficher");
@@ -109,11 +108,7 @@ public class MemberSrvlet extends HttpServlet {
         String nom = request.getParameter("nom");
         Date naissance = Date.valueOf(request.getParameter("naissance"));
         String sportpratique = request.getParameter("sportpratique");
-        Membre membre = new Membre(nom, naissance, sportpratique);
-        System.out.println(nom);
-        System.out.println(naissance);
-        System.out.println(sportpratique);
-        System.out.println(membre.getNaissance());
+        Membre membre = new Membre(nom,naissance,sportpratique);
         memberDAO.ajouterMembre(membre);
         response.sendRedirect("membres?action=afficher");
 
