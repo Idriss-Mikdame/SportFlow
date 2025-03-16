@@ -1,194 +1,190 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.edumanage.demo7.model.Entraineur" %>
 <%@ page import="com.edumanage.demo7.model.Membre" %>
-
 <%
     List<Membre> membreList = (List<Membre>) request.getAttribute("membreList");
 %>
-
-<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Membres</title>
+    <title>Liste des Entraineurs - SportFlow</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
-        :root {
-            --primary-color: #4a6fa5;
-            --primary-hover: #3a5a8a;
-            --danger-color: #dc3545;
-            --danger-hover: #bd2130;
-            --light-bg: #f8f9fa;
-            --border-color: #dee2e6;
-            --text-color: #333;
-            --light-text: #6c757d;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 20px;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
+        .main-content {
+            flex: 1;
+            padding: 40px 0;
         }
-
-        .header {
+        .table-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            background: linear-gradient(to right, #007bff, #6610f2);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            margin-right: 15px;
+        }
+        .nav-link:hover {
+            color: white !important;
+        }
+        .nav-link.active {
+            color: white !important;
+            font-weight: bold;
+        }
+        .dropdown-menu {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-item:hover {
+            background-color: #e9ecef;
+        }
+        footer {
+            background: #343a40;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+        h2 {
+            color: #343a40;
+            margin-bottom: 25px;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #007bff, #6610f2);
+            border: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(to right, #0069d9, #5a0fd3);
+        }
+        .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+            margin-bottom: 20px;
         }
-
-        h2 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 16px;
-            background-color: var(--primary-color);
+        .table th {
+            background-color: #343a40;
             color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: background-color 0.3s;
         }
-
-        .btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-danger {
-            background-color: var(--danger-color);
-        }
-
-        .btn-danger:hover {
-            background-color: var(--danger-hover);
-        }
-
         .btn-sm {
-            padding: 5px 10px;
-            font-size: 14px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-        }
-
-        th {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: 500;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
-        tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.02);
-        }
-
-        tr:hover {
-            background-color: rgba(74, 111, 165, 0.05);
-        }
-
-        td {
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .actions a {
-            text-decoration: none;
-        }
-
-        .empty-message {
-            text-align: center;
-            padding: 20px;
-            font-style: italic;
-            color: var(--light-text);
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            table {
-                display: block;
-                overflow-x: auto;
-            }
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <h2>Liste des Membres</h2>
-        <a href="membres?action=new" class="btn">+ Ajouter un Nouveau Membre</a>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">SportFlow</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp">Accueil</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownEntraineurs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Entraîneurs
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownEntraineurs">
+                        <li><a class="dropdown-item" href="entraineur?action=new">Ajouter</a></li>
+                        <li><a class="dropdown-item" href="entraineur?action=afficher">Afficher</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="membres?action=new">Membres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Seance</a>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
 
-    <% if (membreList == null || membreList.isEmpty()) { %>
-    <div class="empty-message">Aucun membre trouvé. Ajoutez un nouveau membre pour commencer.</div>
-    <% } else { %>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Date de Naissance</th>
-            <th>Sport Pratiqué</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% for (Membre membre : membreList) { %>
-        <tr>
-            <td><%= membre.getId() %></td>
-            <td><%= membre.getNom() %></td>
-            <td><%= membre.getNaissance() %></td>
-            <td><%= membre.getSportPratique() %></td>
-            <td class="actions">
-                <a href="membres?action=afficherbyID&id=<%= membre.getId() %>" class="btn btn-sm">Modifier</a>
-                <a href="membres?action=supprimer&id=<%= membre.getId() %>"
-                   onclick="return confirm('Voulez-vous vraiment supprimer ce membre ?');"
-                   class="btn btn-sm btn-danger">Supprimer</a>
-            </td>
-        </tr>
-        <% } %>
-        </tbody>
-    </table>
-    <% } %>
+<!-- Main Content -->
+<div class="main-content">
+    <div class="container">
+        <div class="table-container">
+            <div class="page-header">
+                <h2>Liste des Members</h2>
+                <a href="membres?action=new" class="btn btn-primary">Ajouter un Menbre</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Date de Naissance</th>
+                        <th>Sport Pratiqué</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for (Membre membre : membreList) { %>
+                    <tr>
+                        <td><%= membre.getId() %></td>
+                        <td><%= membre.getNom() %></td>
+                        <td><%= membre.getNaissance() %></td>
+                        <td><%= membre.getSportPratique() %></td>
+                        <td>
+                            <a href="membres?action=afficherbyID&id=<%= membre.getId() %>" class="btn btn-sm btn-warning">Modifier</a>
+                            <a href="membres?action=supprimer&id=<%= membre.getId() %>" onclick="return confirm('Voulez-vous vraiment supprimer ce membre ?');" class="btn btn-sm btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Footer -->
+<footer class="text-white text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h5>À propos</h5>
+                <p class="small">SportFlow est une plateforme de gestion sportive pour entraîneurs et athlètes.</p>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h5>Liens rapides</h5>
+                <ul class="list-unstyled">
+                    <li><a href="entraineur?action=afficher" class="text-white">Entraîneurs</a></li>
+                    <li><a href="membres?action=new" class="text-white">Membres</a></li>
+                    <li><a href="#" class="text-white">Seance</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Contact</h5>
+                <p class="small">Email: contact@sportflow.com<br>Tél: +33 1 23 45 67 89</p>
+            </div>
+        </div>
+        <hr class="my-3">
+        <p class="small mb-0">&copy; 2025 SportFlow - Tous droits réservés</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

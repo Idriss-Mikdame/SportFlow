@@ -9,7 +9,7 @@ public class ConnectionDB {
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-
+        
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sportflow", "root", "");
 
         Statement stm = connection.createStatement();
@@ -34,7 +34,7 @@ public class ConnectionDB {
                 + "id INT(12) PRIMARY KEY AUTO_INCREMENT, "
                 + "id_Membre INT(10), "
                 + "id_Entraineur INT(10), "
-                + "DATETIME DEFAULT CURRENT_TIMESTAMP , "
+                + "dateHeure DATE , "
                 + "FOREIGN KEY (id_Membre) REFERENCES members(id), "
                 + "FOREIGN KEY (id_Entraineur) REFERENCES entraineurs(id))";
         stm.executeUpdate(seanceTable);

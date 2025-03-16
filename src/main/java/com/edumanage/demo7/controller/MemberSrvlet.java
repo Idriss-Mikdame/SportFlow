@@ -97,7 +97,8 @@ public class MemberSrvlet extends HttpServlet {
     private void modifieMember(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String nom = request.getParameter("nom");
-        Date naissance = Date.valueOf(request.getParameter("naissance"));        String sportpratique = request.getParameter("sportpratique");
+        Date naissance = Date.valueOf(request.getParameter("naissance"));
+        String sportpratique = request.getParameter("sportpratique");
         Membre membre = new Membre(id, nom, naissance, sportpratique);
         memberDAO.modifierMembre(membre);
         response.sendRedirect("membres?action=afficher");

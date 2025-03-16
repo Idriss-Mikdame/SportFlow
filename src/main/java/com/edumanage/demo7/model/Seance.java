@@ -50,8 +50,13 @@ public class Seance {
         this.id = id;
     }
 
-    public Date getDatehour() {
-        return datehour;
+    public java.sql.Date getDatehour() {
+        if (datehour instanceof java.sql.Date) {
+            return (java.sql.Date) datehour;
+        } else if (datehour != null) {
+            return new java.sql.Date(datehour.getTime());
+        }
+        return null;
     }
 
     public void setDatehour(Date datehour) {
